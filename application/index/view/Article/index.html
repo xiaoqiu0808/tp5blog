@@ -1,0 +1,45 @@
+﻿{include file="public/header" /}
+<section class="container">
+  <div class="content-wrap">
+<div class="content">
+      <header class="archive-header">
+    <h1><a href="">{$cdata[$Think.get.id]['name']}</a></h1>
+  </header>
+    {foreach name="articleData" item="v"}
+    <article class="excerpt">
+      <div class="focus">
+        <a href="{:url('Article/show',array('id'=>$v['id']))}" class="thumbnail" target="_blank">
+          <img src="/uploads/{$v['img']}" alt="<b>{$v['title']}</b>" />
+        </a>
+      </div>
+      <header>
+        <h2>
+          <a href="{:url('Article/show',array('id'=>$v['id']))}" target="_blank">
+            <b>{$v['title']}</b>
+          </a>
+        </h2>
+      </header>
+      <p class="note">{$v['note']}</p>
+      <p>
+        <span class="muted"><i class="fa fa-user"></i> {$v['authour']}</span>
+        <span class="muted"><i class="fa fa-clock-o"></i> {:date('Y-m-d', $v['addtime'])}</span>
+        <span class="muted"><i class="fa fa-eye"></i> {$v['views']} 浏览</span>
+      </p>
+    </article>
+    {/foreach}
+    <div class="pagenavi clearfix">
+      <div class="pages">
+        <li>
+          <span class="pageinfo">共 <strong>1</strong>页<strong>4</strong>条记录</span>
+        </li>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{include file="public/right" /}
+
+</section>
+
+{include file="public/footer" /}

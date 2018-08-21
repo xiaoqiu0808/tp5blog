@@ -1,0 +1,30 @@
+﻿{include file="public/header" /}
+<section class="container">
+  <div class="content-wrap">
+    <div class="content">
+      <header class="article-header">
+        <div class="meta">
+          <span class="muted"><i class="ico icon-eye-open icon12"></i> {$data['views']?:0} 浏览</span> </div>
+      </header>
+      <div class="banner banner-post">
+        <div style="margin:10px 0px 10px 0px;"> <a href='#'><img src="/static/index/picture/ad1.jpg" /></a> </div>
+      </div>
+      <article class="article-content">
+        <blockquote>
+          <p><strong>小编：</strong>{$data['title']}</p>
+        </blockquote>
+        {$data['content']}
+        <!--fav-->
+
+        <!--fav end-->
+
+        &nbsp;
+
+      </article>
+
+    </div>
+  </div>
+{include file="public/right" /}
+</section>
+
+{include file="public/footer" /}

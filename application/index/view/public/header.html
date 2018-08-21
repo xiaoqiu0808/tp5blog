@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=10,IE=9,IE=8,ie=7">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>{$configs['stitle']} -- {$configs['sdescription']}</title>
+<meta name="description" content="{$configs['sdescription']}" />
+<meta name="keywords" content="{$configs['skeywords']}" />
+<meta name="Author" content="{$configs['surl']}" />
+<link rel='stylesheet' id='open_social_css-css'  href="/static/index/css/os.css" type='text/css' media='all' />
+<link rel="stylesheet" href="/static/index/css/style.css" media="all">
+<link rel="stylesheet" href="/static/index/css/ScrollPic.css" media="all">
+<link href="/static/index/css/font-awesome.min.css" rel="stylesheet" media="screen">
+<!--[if lt IE 9]><script src="/static/index/js/html5.js"></script><![endif]-->
+<script src="/static/index/js/jquery.js"></script>
+<script src="/static/index/js/jquery.ScrollPic.js"></script>
+<script>
+    window._deel = {
+        maillist: '',
+        maillistCode: '',
+        commenton: 0,
+        roll: [0,0]
+    }
+</script>
+<script type="text/javascript">
+    $(function(){
+
+      $('.yiz-slider-2').ScrollPic({
+            Time: '3000',
+            speed: '100%',
+            autoscrooll: true
+        });
+        $(window).scroll(function(){
+            $offset = $('.placeholder').offset();//不能用自身的div，不然滚动起来会很卡
+            if($(window).scrollTop()>$offset.top){
+                $('.header').css({'position':'fixed','top':'0px','left':$offset.left+'px','z-index':'999'});
+                $(".container").css({"margin-top":"93px"});
+            }else{
+                $('.header').removeAttr('style');
+                $('.container').removeAttr('style');
+            }
+        });
+    })
+</script>
+</head>
+<body class="home blog">
+
+<div class="placeholder"></div>
+<header class="header" style="height: 52px;">
+  <div class="navbar">
+  <h1 class="logo"><a href="{:url('Index/index')}">{$configs['stitle']} -- {$configs['sdescription']} -- {$configs['surl']}</a></h1>
+  <ul class="nav">
+    <li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home"><a href="{:url('Index/index')}">首页</a></li>
+    {foreach name="nav" item="nv"}
+    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children ">
+      <a href="{:url('Article/index',array('id'=>$nv['id']))}">{$nv['name']}</a>
+      <ul class="sub-menu">
+        {foreach name="nav2[$nv['id']]" item="v2"}
+          <li class="menu-item menu-item-type-taxonomy menu-item-object-category">
+            <a href="{:url('Article/index',array('id'=>$v2['id']))}">{$v2['name']}</a>
+          </li>
+        {/foreach}
+      </ul>
+    </li>
+    {/foreach}
+  </ul>
+  <div class="menu pull-right">
+   <form  name="formsearch" action="/plus/search.php">
+      <input type="hidden" name="kwtype" value="0" />
+      <input class="search-input" name="q" id="search-keyword" type="text" placeholder=" 输入你要找的内容" />
+      <button type="submit" class="button" title="搜一下！"><i class="fa"></i></button>
+    </form>
+  </div>
+  </div>
+</header>

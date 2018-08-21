@@ -1,0 +1,17 @@
+<footer class="footer">
+  <div class="footer-inner">
+    <div style="padding:0 20px;overflow:hidden;">
+      <div class="copyright pull-left">
+      {foreach name="footerTop[2]" item="v"}
+        <a href="{:url('about/show',array('nc_id'=>$v['id']))}" target="_blank">{$v['news_name']}</a> |
+      {/foreach}
+       {$configs['scopyright']}
+      </div>
+      <div class="trackcode pull-right">
+        <!-- 站长统计 -->
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

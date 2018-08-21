@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="renderer" content="webkit">
+<title></title>
+<link rel="stylesheet" href="/static/xiaoqiu/css/pintuer.css">
+<link rel="stylesheet" href="/static/xiaoqiu/css/admin.css">
+<link rel="stylesheet" href="/static/vendor/layui//css/layui.css">
+<script src="/static/xiaoqiu/js/jquery.js"></script>
+<script src="/static/xiaoqiu/js/pintuer.js"></script>
+<script src="/static/vendor/layui/layui.js"></script>
+</head>
+<body>
+<div class="panel admin-panel margin-top" id="add">
+  <div class="panel-head"><strong><span class="icon-pencil-square-o"></span> {$artext}友情链接</strong></div>
+  <div class="body-content">
+    <form method="post" class="form-x" action="?">
+      <div class="form-group">
+        <div class="label">
+          <label>标题：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input w50" value="{$data['title']?:''}" name="title" data-validate="required:请输入标题" />
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>URL：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input w50" name="url" value="{$data['url']?:''}"  />
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>图片：</label>
+        </div>
+        <div class="field">
+          <input type="text" id="inp" name="thumb" value="{$data['thumb']?:''}" class="input w50" />
+          <input type="file" name="file" class="layui-upload-file" style="float:left;">
+          <br />
+          <br />
+          <img id="img" src="{$data['thumb']?'/uploads/'.$data['thumb']:'/static/images/thumbview.gif'}" style="width:150px; height:auto;" />
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>描述：</label>
+        </div>
+        <div class="field">
+          <textarea type="text" class="input" name="note" style="height:120px;">{$data['note']?:''}</textarea>
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>排序：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input w50" name="sort" value="{:isset($data['sort'])?$data['sort']:50}"  data-validate="required:,number:排序必须为数字" />
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label></label>
+        </div>
+        <div class="field">
+          <input type="hidden" name="id" value="{$data['id']?:''}" />
+          <button class="button bg-main icon-check-square-o" type="submit"> 提交</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+<script>
+  //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+  layui.use('upload', function(){
+    layui.upload({
+      url: '{:url('Article/upload')}' //上传接口
+      ,success: function(res){ //上传成功后的回调
+        console.log(res)
+        $('#inp').val(res);
+        $('#img').attr('src', '/uploads/' + res);
+      }
+    });
+
+    layui.upload({
+      url: '/test/upload.json'
+      ,elem: '#test' //指定原始元素，默认直接查找class="layui-upload-file"
+      ,method: 'get' //上传接口的http类型
+      ,success: function(res){
+        LAY_demo_upload.src = res.url;
+      }
+    });
+  });
+</script>
+</html>

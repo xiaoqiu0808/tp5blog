@@ -1,0 +1,72 @@
+ <aside class="sidebar">
+  <div class="widget d_banner">
+    <div class="d_banner_inner">
+      <a href="#"><img src="/static/index/images/ad2.jpg"></a>
+    </div>
+  </div>
+  <div class="widget d_textbanner">
+    <a class="style03" href="#" target="_blank"><strong>广告位</strong>
+      <h2>文字广告位</h2>
+      <p>这里可以放置文字类广告<br>
+         下载模板请到 www.XXXX.com <br>
+         欢迎加入友生网络交流群：XXXX
+      </p>
+    </a>
+  </div>
+  <div class="widget widget_text">
+    <div class="textwidget">
+      <a href="#"><img src="/static/index/images/ad3.jpg"></a>
+    </div>
+  </div>
+  <div class="widget widget_text">
+    <div class="textwidget">
+      <a href="#"><img src="/static/index/images/ad4.jpg"></a>
+    </div>
+  </div>
+  <div class="widget d_postlist">
+    <h3 class="widget_tit">置顶文章</h3>
+    <ul>
+      {foreach name="istop" item="v"}
+      <li>
+        <a href="{:url('index/Article/show',array('id'=>$v['id']))}">
+          <span class="thumbnail">
+          <img src="/uploads/{$v['img']}" alt="{$v['title']}" />
+          </span>
+          <span class="text">{$v['title']}</span>
+          <span class="muted">{:date('Y-m-d',$v['addtime'])}</span>
+          <span class="muted">
+            <span class="ds-thread-count" data-replace="1">{$v['views']}次阅读</span>
+          </span>
+        </a>
+      </li>
+      {/foreach}
+    </ul>
+  </div>
+
+  <div class="widget widget_text">
+    <div class="textwidget">
+      <a href="#"><img src="/static/index/images/ad5.jpg"></a>
+    </div>
+  </div>
+
+  <div class="widget d_postlist">
+    <h3 class="widget_tit">推荐文章</h3>
+    <ul>
+      {foreach name="isvouch" item="v"}
+      <li>
+        <a href="{:url('index/Article/show',array('id'=>$v['id']))}">
+          <span class="thumbnail">
+          <img src="/uploads/{$v['img']}" alt="{$v['title']}" />
+          </span>
+          <span class="text">{$v['title']}</span>
+          <span class="muted">{:date('Y-m-d',$v['addtime'])}</span>
+          <span class="muted">
+            <span class="ds-thread-count" data-replace="1">{$v['views']}次阅读</span>
+          </span>
+        </a>
+      </li>
+      {/foreach}
+    </ul>
+  </div>
+
+</aside>

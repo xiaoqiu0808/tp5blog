@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="renderer" content="webkit">
+<title></title>
+<link rel="stylesheet" href="/static/xiaoqiu/css/pintuer.css">
+<link rel="stylesheet" href="/static/xiaoqiu/css/admin.css">
+<script src="/static/xiaoqiu/js/jquery.js"></script>
+<script src="/static/xiaoqiu/js/pintuer.js"></script>
+</head>
+<body>
+<div class="panel admin-panel">
+  <div class="panel-head"><strong class="icon-reorder"> 内容列表</strong></div>
+  <div class="padding border-bottom">
+    <button type="button" class="button border-yellow" onclick="window.location.href='{:url('Category/add')}'"><span class="icon-plus-square-o"></span> 添加分类</button>
+  </div>
+  <table class="table table-hover text-center">
+    <tr>
+      <th width="5%">ID</th>
+      <th width="15%">分类名称</th>
+      <th width="15%">顶级分类</th>
+      <th width="10%">排序</th>
+      <th width="10%">操作</th>
+    </tr>
+    {foreach name="data" item="v"}
+    <tr>
+      <td>{$v['id']}</td>
+      <td align='left'>{:str_repeat('&nbsp;',$v['level']*6)}{$v['name']}</td>
+      <td>{$v['pid']?$datas[ $v['pid'] ]['name']:''}</td>
+      <td>{$v['sort']}</td>
+      <td><div class="button-group"> <a class="button border-main" href="{:url('Category/edit', array('id'=>$v['id']))}"><span class="icon-edit"></span> 修改</a> <a class="button border-red" href="{:url('Category/del', array('id'=>$v['id']))}"><span class="icon-trash-o"></span> 删除</a> </div></td>
+    </tr>
+    {/foreach}
+  </table>
+</div>
+<script type="text/javascript">
+function del(id,mid){
+	if(confirm("您确定要删除吗?")){
+
+	}
+}
+</script>
+</div>
+</body>
+</html>
